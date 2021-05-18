@@ -31,12 +31,6 @@ const Form = (props) => {
       />
       <input
         type="text"
-        name="race"
-        value={formData.race}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
         name="description"
         value={formData.description}
         onChange={handleChange}

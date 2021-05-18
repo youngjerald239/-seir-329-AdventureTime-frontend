@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
 import "./App.css";
 import { Route, Link, Switch } from "react-router-dom";
 import Display from "./Display";
@@ -7,7 +8,7 @@ import Form from "./Form";
 function App() {
 
 // PUT URL in a variable
-const url = ""
+const url = "http://localhost:4000"
 
 // State to hold list of places/people
 const [places, setPlaces] = React.useState([])
@@ -33,10 +34,11 @@ const getPlaces = () => {
     setPlaces(data)
   })
 };
+useEffect(() => {getPlaces()}, [])
 
 //handleCreate - function for when the create form is submitted
 const handleCreate = (newPlace) => {
-  fetch(url + "/places/", {
+  fetch(url + "/places", {
     method: "POST", 
     headers: {
       "Content-Type": "application/json"
@@ -44,6 +46,7 @@ const handleCreate = (newPlace) => {
     body: JSON.stringify(newPlace)
   })
   .then(() => getPlaces())
+  
 };
 
 //handleUpdate  - function for when the edit form is submitted
